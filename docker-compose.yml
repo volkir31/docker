@@ -16,7 +16,6 @@ services:
     image: caddy:2-alpine
     volumes:
       - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - ./data/caddy/data:/data
       - ./php:/var/www
     ports:
       - 80:80
