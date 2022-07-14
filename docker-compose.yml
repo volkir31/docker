@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  php:
+    container_name: php
+    build:
+      context: docker/php-fpm
+      dockerfile: Dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./php:/var/www
+      - ./docker/php-fpm/php.ini:/usr/local/etc/php/conf.d/custom.ini
+
+  caddy:
+    restart: always
+    container_name: caddy
+    image: caddy:2-alpine
+    volumes:
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./data/caddy/data:/data
+      - ./php:/var/www
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - php
