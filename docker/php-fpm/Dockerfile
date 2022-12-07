@@ -19,14 +19,14 @@ RUN apt-get update && apt-get install -y \
     libssh-dev \
     curl
 
-RUN apt-get -y update && apt-get install -y libicu-dev && docker-php-ext-configure intl && docker-php-ext-install intl
 
 RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get -y update \
 && apt-get install -y libicu-dev \
 && docker-php-ext-configure intl \
-&& docker-php-ext-install intl
+&& docker-php-ext-install intl \
+&& docker-php-ext-install mysqli pdo_mysql
 
 
 RUN pecl install amqp \

@@ -1,4 +1,4 @@
-trofim.ru:80 {
+homework.local:80 {
 	root * /var/www/
 
 	log
@@ -35,5 +35,11 @@ trofim.ru:80 {
     respond /.gitignore "403 Access denied" 403 {
          close
     }
+}
 
+db.test:80 {
+  log
+  encode gzip
+
+  reverse_proxy phpmyadmin:80
 }
